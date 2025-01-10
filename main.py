@@ -6,7 +6,7 @@ import random
 from playerandfood import Square, Player, Poison
 from sound import *
 from scorebord import ScoreBoard
-from portals import PortalPair
+
 
 
 def main():

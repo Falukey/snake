@@ -2,7 +2,7 @@ import pygame
 import time
 from constants import *
 import random
-from portals import PortalPair
+
 
 class Square():
     def __init__(self, grid_x, grid_y, grid_size, radius = GRID_SIZE / 2):
@@ -102,7 +102,7 @@ class Player(Square):
 
 
     def draw(self, screen):
-        # Draw each segment of the snake
+        print(f"Snake segments: {self.segments}")
         for segment in self.segments:
             screen_x = segment[0] * self.grid_size
             screen_y = segment[1] * self.grid_size
@@ -121,13 +121,12 @@ class Player(Square):
         self.move_delay = max(self.min_move_delay, self.move_delay - decrease_amount)
 
 
-
+    
     def check_collision(self,):
         head = self.segments[0]
         head_x, head_y = self.segments[0]
         head_x *= GRID_SIZE
         head_y *= GRID_SIZE
-
     # Check collision with the boundary
         if head_x < 0 or head_x >= SCREEN_WIDTH or head_y < 0 or head_y >= SCREEN_HEIGHT:
             return True
@@ -208,6 +207,7 @@ class Poison(Square):
             if pos not in occupied_positions:
                 occupied_positions.add(pos)
                 self.positions.append(pos)
+                
     
     def get_random_position(self):
         max_x = (SCREEN_WIDTH // self.grid_size) - 1
@@ -215,8 +215,10 @@ class Poison(Square):
         x = random.randint(0, max_x)
         y = random.randint(0, max_y)
         return (x, y)
-
+    
     def draw(self, screen):
+        print("Drawing poison at positions:", self.positions)
+        print(f"Drawing poison at pixel coordinates: {[(x * self.grid_size, y * self.grid_size) for x,y in self.positions]}")
         color = (128, 0, 128)
         for pos in self.positions:
             x, y = pos
