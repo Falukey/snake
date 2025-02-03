@@ -7,4 +7,4 @@
 
 
 ## building
-if you wish to build on this you need python3 py game and the digautal envirment
+# Contributing if you wish to build on this you need python3 py game and the digautal envirment
